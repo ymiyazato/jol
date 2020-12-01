@@ -377,7 +377,8 @@ public class GraphLayout {
                 pw.printf(" %16x %10d %-" + typeLen + "s %-30s %s%n", last, addr - last, "**** OVERLAP ****", "**** OVERLAP ****", "**** OVERLAP ****");
             }
 
-            pw.printf(" %16x %10d %-" + typeLen + "s %-30s %s%n", addr, size, record.klass().getName(), record.path(), ObjectUtils.safeToString(record.obj()));
+            //pw.printf(" %16x %10d %-" + typeLen + "s %-30s %s%n", addr, size, record.klass().getName(), record.path(), ObjectUtils.safeToString(record.obj()));
+            pw.printf(" %16x %10d %-" + typeLen + "s %-30s %s%n", addr, size, record.klass().getName(), record.path(), "value");
             last = addr + size;
         }
         pw.println();
@@ -497,5 +498,9 @@ public class GraphLayout {
 
         ImageIO.write(image, "png", new File(fileName));
     }
+    public long getSize(long addr){
+        return record(addr).size();
+    }
+
 
 }
